@@ -24,6 +24,18 @@ const useStyles = makeStyles({
   },
 });
 
+const TestimonialTitle = styled(Typography)(({ theme }) => ({
+  fontWeight: 700,
+  marginBottom: 20,
+  fontSize: 45,
+  textAlign: 'center',
+  color: 'white',
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: 30
+  },
+}));
+
 const TestimonialText = styled(Typography)({
   fontStyle: "italic",
   textAlign: "center",
@@ -100,6 +112,9 @@ export const Carousel = () => {
 
   return (
     <Box className={classes.root}>
+      <TestimonialTitle>
+        Words From Our Partners
+      </TestimonialTitle>
       <Grid
         container
         direction="row"

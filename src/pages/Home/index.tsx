@@ -30,10 +30,10 @@ const Hero = styled(Grid)(({ theme }) => ({
   minHeight: 310,
   padding: 50,
   margin: 'auto',
+  maxWidth: '1300px',
 
   [theme.breakpoints.down('md')]: {
     width: '100%',
-    maxWidth: '100%'
   },
 
   [theme.breakpoints.down('sm')]: {
@@ -80,12 +80,12 @@ const VideoBox = styled(Box)(({ theme }) => ({
   backgroundRepeat: "no-repeat",
   boxShadow: "2px 2px 14px 3px rgba(0, 0, 0, 0.28)",
   height: 420,
-  width: '45vw',
+  width: '25vw',
   maxWidth: '80%',
 
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('md')]: {
     margin: 'auto',
-    width: '80vw',
+    width: '70vw',
     height: '50vw',
     marginBottom: 10
   }
@@ -97,6 +97,23 @@ const HeroTextContainer = styled(Grid)(({ theme }) => ({
 
   [theme.breakpoints.down('sm')]: {
     width: '80%'
+  }
+}))
+
+const HeroAnimationContainer = styled(Grid)(({ theme }) => ({
+  height: '100%',
+  maxWidth: '20vw',
+  margin: 'auto',
+  marginBottom: '-40px',
+  marginTop: '-40px',
+
+  [theme.breakpoints.down('md')]: {
+    marginTop: 'auto',
+    maxWidth: '60vw'
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '40vw',
   }
 }))
 
@@ -125,9 +142,21 @@ const SubmitSuccess = styled(Typography)({
 });
 
 const VideoBoxGridContainer = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  marginRight: 'auto',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '500px',
+  width: '45vw',
+  maxWidth: '100%',
+
   [theme.breakpoints.down('sm')]: {
+    margin: 'auto',
+    width: '80vw',
+    height: 'auto',
+    marginBottom: 10,
     order: -1
-  }
+  },
 }))
 
 const LaunchPartnersText = styled(Typography)(({ theme }) => ({
@@ -137,6 +166,10 @@ const LaunchPartnersText = styled(Typography)(({ theme }) => ({
   marginBottom: 20,
   textAlign: 'center',
   fontWeight: 700,
+
+  [theme.breakpoints.down('md')]: {
+    marginTop: 20,
+  },
 
   [theme.breakpoints.down('sm')]: {
     fontSize: 30
@@ -233,25 +266,8 @@ const BetterTitle = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
 
   [theme.breakpoints.down('sm')]: {
-    fontSize: 32
+    fontSize: 30
   },
-}));
-
-const BetterInfographic = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  marginRight: 'auto',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '500px',
-  width: '45vw',
-  maxWidth: '50%',
-
-  [theme.breakpoints.down('sm')]: {
-    margin: 'auto',
-    width: '80vw',
-    height: '50vh',
-    marginBottom: 10
-  }
 }));
 
 const BetterBody = styled(Typography)(({ theme }) => ({
@@ -263,7 +279,8 @@ const BetterBody = styled(Typography)(({ theme }) => ({
   marginTop: 'auto',
 
   [theme.breakpoints.down('md')]: {
-    lineHeight: 1.5
+    lineHeight: 1.5,
+    maxWidth: '80%',
   },
 
   [theme.breakpoints.down('sm')]: {
@@ -271,8 +288,9 @@ const BetterBody = styled(Typography)(({ theme }) => ({
     fontSize: 16,
     margin: 'auto',
     width: '80vw',
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: '10px',
+    marginBottom: '10px',
+    paddingLeft: '-10px'
   }
 }));
 
@@ -387,25 +405,9 @@ export const Home = () => {
             </Grid>
           </HeroTextContainer>
         </Grid>
-        <VideoBoxGridContainer item sm={12} md={7}>
-          <Box display='flex' flexDirection='column' justifyContent='center' width='100%' height='100%'>
-            <VideoBox onClick={() => {
-              ReactGA.event({
-                category: 'Demo Video',
-                action: 'click',
-                label: 'Early Access'
-              });
-
-              setIsVideoOpen(true);
-            }}>
-              <Lottie 
-                options={videoLottieOptions}
-                height={"90%"}
-              />
-              <PlayIcon icon={faPlay} />
-            </VideoBox>
-          </Box>
-        </VideoBoxGridContainer>
+        <HeroAnimationContainer>
+          <Lottie options={solutionLottieOptions} />
+        </HeroAnimationContainer>
       </Hero>
       <LaunchPartnersText variant='h3' color='textPrimary'>
         Launch Partners
@@ -438,10 +440,26 @@ export const Home = () => {
         Hypercomposability Has Arrived
       </BetterTitle>
       <BetterContainer>
-          <BetterInfographic>
-            <Lottie options={solutionLottieOptions} />
-          </BetterInfographic>
-          <BetterBody color="textSecondary" variant="subtitle1">
+          <VideoBoxGridContainer item sm={12} md={7}>
+            <Box display='flex' flexDirection='column' justifyContent='center' width='100%' height='100%'>
+              <VideoBox onClick={() => {
+                ReactGA.event({
+                  category: 'Demo Video',
+                  action: 'click',
+                  label: 'Early Access'
+                });
+
+                setIsVideoOpen(true);
+              }}>
+                <Lottie 
+                  options={videoLottieOptions}
+                  height={"90%"}
+                />
+                <PlayIcon icon={faPlay} />
+              </VideoBox>
+            </Box>
+          </VideoBoxGridContainer>
+        <BetterBody color="textSecondary" variant="subtitle1">
           Web3API solves the integration problem by making Web3 protocols as universally accessible as traditional web services. Web3API-powered apps download lightweight WebAssembly (WASM) modules from IPFS at runtime, and execute GraphQL requests directly inside the app.
           <br/>
           <br/>
